@@ -289,3 +289,56 @@ small{
     filter: grayscale(0);
 
 }
+
+
+
+
+/*------ Menu -------*/
+.row-2 {
+    justify-content: space-between;
+    margin: 100px auto 50px;
+
+}
+
+select{
+    border: 1px solid; ##ff523b;
+    padding: 5px;
+}
+
+select: focus {
+    outline: none;
+
+}
+
+/*-------ปุ่มหน้ากดถัดไป-------*/
+
+.page-btn{
+    margin: 0 auto 80px;
+
+}
+
+.page-btn span{
+    display: inline-block;
+    border: 1px solid  #080808;
+    margin-left: 10px;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    cursor: pointer;
+}
+
+
+/* when mouse pointer will turn to black*/
+
+.page-btn span:hover{
+
+    background: #080808;
+    color: #fff;
+
+
+}
+
+
+
+
