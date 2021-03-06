@@ -1,17 +1,50 @@
+
+var coffees = [];
+
+//document ready
 $(document).ready(function () {
     console.log('running');
-    addNewCoffee("Caffein Crazy", "Aroma with 6 shots of dark coffee", 120,"");
+    coffees.push(
+        new Coffee("asdlfkajsdlfksjd","Capuchino", "Pretty Good.", 100, "https://www.starbucks.co.th/stb-media/2021/02/2-8-Mobile-app-Bev-Iced-Salted-Caramel-Cloud-Macchiato-600x600.png")
+    );
+
+
+    coffees.push(
+        new Coffee("MOCK", "KUY", "description", 1212, "https://www.starbucks.co.th/stb-media/2021/02/2-8-Mobile-app-Bev-Iced-Salted-Caramel-Cloud-Macchiato-600x600.png")
+    );
+
+    onUpdateUI();
 })
 
-function addNewCoffee(name, des, price, imgSrc) {
+function onUpdateUI() {
+    coffees.forEach(function (item) {
+        addNewCoffeeItem(item);
+    });
+}
+
+function addNewCoffeeItem(coffeeItem) {
     $('#coffeeContainer')
-        .append (
+        .append(
             `<div class="col-4">
-                <img src="https://images.unsplash.com/photo-1522992319-0365e5f11656?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80">
-                <h4> ${name}</h4>
-                <p>${des}</p>
-                <p>${price} Baht</p>
-                <a href="#" class="btn"> Buy </a>
+                <div>
+                <img src=${coffeeItem.imgSrc}>
+                <h4> ${coffeeItem.name}</h4>
+                <p>${coffeeItem.description}</p>
+                <p>${coffeeItem.price} Baht</p>
+                </div>  
+                <a href="#" class="btn" id=${coffeeItem.id}> Buy </a>
+
             </div>`
         );
 }
+
+//Models
+class Coffee {
+    constructor(id, name, description, price, imgSrc) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.imgSrc = imgSrc;
+    }
+};
