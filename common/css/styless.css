@@ -11,8 +11,9 @@ body{
     font-family: 'Poppins', sans-serif;
 }
 
-
-
+.pt-1 {
+    padding-top: 4%;
+}
 
 .navbar{
     display: flex;
@@ -22,13 +23,12 @@ body{
 
 nav{
     flex: 1;
-    text-align: right;
+    text-align: center;
 }
 
 nav ul{
     display: inline-block;
     list-style-type: none;
-    
 
 }
 
@@ -40,7 +40,7 @@ nav ul li{
 
 a{
     text-decoration: none;
-    color:rgb(255, 251, 251);
+    color: #000000; 
 }
 
 p{

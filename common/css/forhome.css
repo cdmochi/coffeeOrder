@@ -8,10 +8,6 @@
     background-position: center;
     text-align: center;
     position: relative;
-    padding: 50px 0;
-    
-
-
 }
 
 
@@ -30,6 +26,7 @@ body{
     display: flex;
     align-items: center;
     width: auto;
+    padding: 15px;
 }
 
 nav{
@@ -128,6 +125,7 @@ p{
     max-width: 650px;
     padding: 50px 0;
     position: relative;
+    padding-left: 20%;
 }
 
 .col-00 h1{

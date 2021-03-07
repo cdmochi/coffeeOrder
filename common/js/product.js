@@ -1,6 +1,4 @@
 
-<<<<<<< HEAD
-=======
 var coffees = [];
 
 //document ready
@@ -24,13 +22,14 @@ $(document).ready(function () {
         new Coffee("MOCK", "กาแฟเย็น", "description", 5000000, "https://www.starbucks.co.th/stb-media/2021/02/2-8-Mobile-app-Bev-Iced-Salted-Caramel-Cloud-Macchiato-600x600.png")
     );
 
+    coffees.push(
+        new Coffee("MOCK", "กาแฟเย็น", "description", 5000000, "https://www.starbucks.co.th/stb-media/2021/02/2-8-Mobile-app-Bev-Iced-Salted-Caramel-Cloud-Macchiato-600x600.png")
+    );
 
-
-
-
+    console.log("it's runnging");
 
     onUpdateUI();
-})
+});
 
 function onUpdateUI() {
     coffees.forEach(function (item) {
@@ -66,4 +65,3 @@ class Coffee {
         this.imgSrc = imgSrc;
     }
 };
->>>>>>> d153f90aa0f091d82eb516a2b1a435de45f055bd
