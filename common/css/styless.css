@@ -203,6 +203,9 @@ categories{
 }
 
 
+
+
+
 .col-4{
     flex-basis: 30%;
     padding: 10px;
@@ -406,5 +409,160 @@ select: focus {
 }
 
 
+
+.cart-page{
+
+    margin: 80px auto;
+
+}
+table{
+    width: 100%;
+    border-collapse: collapse;
+
+}
+
+.cart-info{
+   display: flex;
+   flex-wrap: wrap;
+
+
+}
+
+th{
+    text-align: left;
+    padding: 5px;
+    color: #fff;
+    background: #c40202;
+    font-weight: normal;
+}
+/* pading picture*/
+td{  
+    padding: 10px 5px ;
+}
+
+td input{
+    width: 40px;
+    height: 30px;
+    padding: 5px;
+}
+
+td a{
+    color: #d41900;
+    font-size: 12px;
+
+}
+
+td img{
+    width: 80px;
+    height: 80px;
+    margin-right: 10px;
+
+}
+
+.total-price{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.total-price table{
+    border-top:3px solid #ff523b ;
+    width: 100%;
+    max-width: 350px;
+}
+
+
+
+
+
+.product-de{
+    flex-basis: 50%;
+    min-width: 300px;    
+    position: relative;
+    transition: transform 0.5s;    
+}
+
+.product-de img{
+    
+    max-width: 650px;
+    padding: 50px 0;
+    position: relative;
+    right: 25%;
+   
+  
+    
+    
+}
+
+.product-de h1{
+    font-size: 40px;
+    line-height: 90px;
+    margin: 25px 0;
+    
+}
+
+.product-de:hover{
+    transform: translateY(-5px);
+}
+
+.product p{
+
+    color: #555;
+    font-size: 40px;
+
+
+}
+
+h6{
+    color: #555;
+    font-weight:bolder;
+}
+
+.col-about{
+    flex-basis: 50%;
+    min-width: 300px;
+    position: relative;
+    right: 9%;
+    top: 150px;
+    
+    transition: transform 0.5s;    
+}
+
+.col-about img{
+    
+    max-width: 650px;
+    padding: 50px 0;
+    position: relative;
+    padding-left: 15%;
+}
+
+.col-about h1{
+    font-size: 50px;
+    line-height: 60px;
+    margin: 25px 0;
+    
+}
+
+.col-about1{
+    flex-basis: 100%;
+    min-width: 300px;
+    position: relative;
+   
+    
+    
+    transition: transform 0.5s;    
+}
+
+.col-about1 img{
+    
+    display: block;
+    margin: auto;
+}
+
+.col-about h1{
+    font-size: 50px;
+    line-height: 60px;
+    margin: 25px 0;
+    
+}
 
 

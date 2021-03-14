@@ -26,10 +26,25 @@ $(document).ready(function () {
         new Coffee("MOCK", "กาแฟเย็น", "description", 5000000, "https://www.starbucks.co.th/stb-media/2021/02/2-8-Mobile-app-Bev-Iced-Salted-Caramel-Cloud-Macchiato-600x600.png")
     );
 
-    console.log("it's runnging");
+    coffees.push(
+        new Coffee("MOCK", "กาแฟเย็น", "description", 5000000, "https://www.starbucks.co.th/stb-media/2021/02/2-8-Mobile-app-Bev-Iced-Salted-Caramel-Cloud-Macchiato-600x600.png")
+    );
+
+    coffees.push(
+        new Coffee("MOCK", "กาแฟเย็น", "description", 5000000, "https://www.starbucks.co.th/stb-media/2021/02/2-8-Mobile-app-Bev-Iced-Salted-Caramel-Cloud-Macchiato-600x600.png")
+    );
+
+
+
+
+
+
+
+
+
 
     onUpdateUI();
-});
+})
 
 function onUpdateUI() {
     coffees.forEach(function (item) {
