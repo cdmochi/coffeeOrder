@@ -5,7 +5,6 @@ $(document).ready(function () {
     console.log('running');
     //request coffeesList
     onLoadCoffees();
-
     onUpdateUI();
 });
 
