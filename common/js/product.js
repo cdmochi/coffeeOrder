@@ -3,45 +3,48 @@ var coffees = [];
 //document ready
 $(document).ready(function () {
     console.log('running');
-    
-    //requesting api coffees
-    let endpoint = 'http://localhost:3000/coffees'
-    $.ajax({
-        url: endpoint,
-        contentType: "application/json",
-        dataType: 'json',
-        success: function(result) {
-            console.log('api requested successfully: ' + result);
-        }
-    });
-
-
-    coffees.push(
-        new Coffee("asdlfkajsdlfksjd","Capuchino", "Pretty Good.", 100, "https://www.starbucks.co.th/stb-media/2021/02/2-8-Mobile-app-Bev-Iced-Salted-Caramel-Cloud-Macchiato-600x600.png")
-    );
-
-
-    coffees.push(
-        new Coffee("MOCK", "KUY", "description", 1212, "https://www.starbucks.co.th/stb-media/2021/02/2-8-Mobile-app-Bev-Iced-Salted-Caramel-Cloud-Macchiato-600x600.png")
-    );
-
-    coffees.push(
-        new Coffee("MOCK", "KUYRAIWAISAS", "description", 1212, "https://www.starbucks.co.th/stb-media/2021/02/2-8-Mobile-app-Bev-Iced-Salted-Caramel-Cloud-Macchiato-600x600.png")
-    );
-
-
-    coffees.push(
-        new Coffee("MOCK", "กาแฟเย็น", "description", 5000000, "https://www.starbucks.co.th/stb-media/2021/02/2-8-Mobile-app-Bev-Iced-Salted-Caramel-Cloud-Macchiato-600x600.png")
-    );
-
-    coffees.push(
-        new Coffee("MOCK", "กาแฟเย็น", "description", 5000000, "https://www.starbucks.co.th/stb-media/2021/02/2-8-Mobile-app-Bev-Iced-Salted-Caramel-Cloud-Macchiato-600x600.png")
-    );
-
-    console.log("it's runnging");
+    //request coffeesList
+    onLoadCoffees();
 
     onUpdateUI();
 });
+
+function onLoadCoffees() {
+
+    let endpoint = 'http://localhost:3000/coffees'
+    $.ajax({
+        type: 'GET',
+        url: endpoint,
+        contentType: 'application/json',
+        dataType: 'json',
+        success: function(result) {
+            console.log('api requested successfully: ' + result.statusCode);
+            let coffeeItem = result.data
+            console.log(coffeeItem.length)
+            var index;
+            for (index = 0; index < coffeeItem.length; index++) {
+                let item = coffeeItem[index]
+                console.log(item.name +":"+ item.name)
+                coffees.push(
+                    new Coffee(
+                        item._id,
+                        item.name,
+                        item.des,
+                        item.price,
+                        item.imgURL
+                    )
+                )
+                onUpdateUIAtPos(index);
+            }
+        }
+    });
+}
+
+function onUpdateUIAtPos(position) {
+    let coffeeItem = coffees[position]
+    addNewCoffeeItem(coffeeItem)
+}
+
 
 function onUpdateUI() {
     coffees.forEach(function (item) {
@@ -64,8 +67,6 @@ function addNewCoffeeItem(coffeeItem) {
             </div>`
         );
 }
-
-
 
 //Models
 class Coffee {
