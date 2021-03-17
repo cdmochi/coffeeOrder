@@ -4,8 +4,10 @@ const app = express()
 let PORT = 3000
 
 //MongoDB
+const dbBucket = "mongodb+srv://pete:peterparker@chuanprojectcluster.07gng.mongodb.net/coffeeDB?retryWrites=true&w=majority"
+
 const mongoose = require('mongoose')
-mongoose.connect("mongodb://localhost:27017/coffees", { useUnifiedTopology: true, useNewUrlParser: true })
+mongoose.connect(dbBucket, { useUnifiedTopology: true, useNewUrlParser: true })
 //const db = mongoose.connection
 //db.on('error', (error) => console.error(error))
 //db.once('open', () => console.log('connected to database') )
@@ -14,8 +16,8 @@ mongoose.connect("mongodb://localhost:27017/coffees", { useUnifiedTopology: true
 //Middlewares
 //var data = require('./model/coffees')
 var coffeeRouter = require('./routes/coffees')
-app.use('/coffees', coffeeRouter)
 app.use(express.json())
+app.use('/coffees', coffeeRouter)
 
 app.get('/', (req,res) => {
     res.send('Database Connected Successfully at port ' + PORT)

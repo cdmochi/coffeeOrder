@@ -6,7 +6,10 @@ const Coffee = require('../model/Coffee')
 
 router.get('/',async (req, res) => {
     const result = await Coffee.find()
-    res.json(result)
+    res.json( {
+        statusCode: 200,
+        data: result 
+    })
 })
 
 router.get('/:id',(req, res) => {
@@ -18,9 +21,15 @@ router.get('/:id',(req, res) => {
 
 router.post('/', async (req, res) => {
     const payload = req.body
-    const coffee = new Coffee(payload)
+    const coffee = new Coffee({
+        name: payload.name,
+        des: payload.des,
+        price: payload.price,
+        imgURL: payload.imgURL
+    })
     await coffee.save()
-    res.status(201).end()
+    res.status(201).send(coffee)
 })
+
 
 module.exports = router
