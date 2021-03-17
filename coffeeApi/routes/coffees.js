@@ -31,11 +31,5 @@ router.post('/', async (req, res) => {
     res.status(201).send(coffee)
 })
 
-<<<<<<< HEAD
-router.exports
-
-
-=======
 
 module.exports = router
->>>>>>> 8b0aaa703b990bfff66dd83ceb7a5d55de79404b

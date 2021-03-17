@@ -1,9 +1,21 @@
-
 var coffees = [];
 
 //document ready
 $(document).ready(function () {
     console.log('running');
+    
+    //requesting api coffees
+    let endpoint = 'http://localhost:3000/coffees'
+    $.ajax({
+        url: endpoint,
+        contentType: "application/json",
+        dataType: 'json',
+        success: function(result) {
+            console.log('api requested successfully: ' + result);
+        }
+    });
+
+
     coffees.push(
         new Coffee("asdlfkajsdlfksjd","Capuchino", "Pretty Good.", 100, "https://www.starbucks.co.th/stb-media/2021/02/2-8-Mobile-app-Bev-Iced-Salted-Caramel-Cloud-Macchiato-600x600.png")
     );

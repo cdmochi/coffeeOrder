@@ -1,5 +1,6 @@
 //expressJS
 const express = require('express')
+const cors = require('cors')
 const app = express()
 let PORT = 3000
 
@@ -17,6 +18,7 @@ mongoose.connect(dbBucket, { useUnifiedTopology: true, useNewUrlParser: true })
 //var data = require('./model/coffees')
 var coffeeRouter = require('./routes/coffees')
 app.use(express.json())
+app.use(cors())
 app.use('/coffees', coffeeRouter)
 
 app.get('/', (req,res) => {
