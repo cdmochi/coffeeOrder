@@ -31,5 +31,4 @@ router.post('/', async (req, res) => {
     res.status(201).send(coffee)
 })
 
-
 module.exports = router

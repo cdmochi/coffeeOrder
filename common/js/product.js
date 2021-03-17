@@ -5,7 +5,6 @@ $(document).ready(function () {
     console.log('running');
     //request coffeesList
     onLoadCoffees();
-
     onUpdateUI();
 });
 
@@ -40,11 +39,33 @@ function onLoadCoffees() {
     });
 }
 
+<<<<<<< HEAD
 function onUpdateUIAtPos(position) {
     let coffeeItem = coffees[position]
     addNewCoffeeItem(coffeeItem)
 }
 
+=======
+    coffees.push(
+        new Coffee("MOCK", "กาแฟเย็น", "description", 5000000, "https://www.starbucks.co.th/stb-media/2021/02/2-8-Mobile-app-Bev-Iced-Salted-Caramel-Cloud-Macchiato-600x600.png")
+    );
+
+    coffees.push(
+        new Coffee("MOCK", "กาแฟเย็น", "description", 5000000, "https://www.starbucks.co.th/stb-media/2021/02/2-8-Mobile-app-Bev-Iced-Salted-Caramel-Cloud-Macchiato-600x600.png")
+    );
+
+
+
+
+
+
+
+
+
+
+    onUpdateUI();
+})
+>>>>>>> 5ef1175b63f2667dced9f2a73245d6446b3f649f
 
 function onUpdateUI() {
     coffees.forEach(function (item) {
