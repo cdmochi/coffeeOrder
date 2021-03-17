@@ -1,34 +1,29 @@
+//expressJS
 const express = require('express')
-const mongoose = require('mongoose')
 const app = express()
-let port = 3000
+let PORT = 3000
 
+//MongoDB
+const dbBucket = "mongodb+srv://pete:peterparker@chuanprojectcluster.07gng.mongodb.net/coffeeDB?retryWrites=true&w=majority"
+
+const mongoose = require('mongoose')
+mongoose.connect(dbBucket, { useUnifiedTopology: true, useNewUrlParser: true })
 //const db = mongoose.connection
 //db.on('error', (error) => console.error(error))
 //db.once('open', () => console.log('connected to database') )
 
-var data = require('./model/coffees')
 
-//if request empty received then send 'hello World"
+//Middlewares
+//var data = require('./model/coffees')
+var coffeeRouter = require('./routes/coffees')
+app.use(express.json())
+app.use('/coffees', coffeeRouter)
+
 app.get('/', (req,res) => {
-    res.send('Hello World')
+    res.send('Database Connected Successfully at port ' + PORT)
 })
 
-app.get('/coffees', (req, res) => {
-    res.json(data.findAll())
-})
-
-app.get('/coffees/:id', (req,res) => {
-    var id = req.params.id
-    res.json(data.findById(id))
-})
-
-app.post('/coffees', (req, res) => {
-    const payload = req.body
-    res.json(payload)
-})
-
-app.listen(port, () => {
-    console.log('เซิฟเปิดแล้วจ้าาา เร่เข้ามา')
+app.listen(PORT, () => {
+    console.log('server is listening at http://localhost:3000/')
 })
 
