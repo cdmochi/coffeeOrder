@@ -1,7 +1,13 @@
 const mongoose = require('mongoose')
+const Schema = mongoose.Schema
 
-const coffeeSchema = new mongoose.Schema({
-     
+const coffeeSchema = new Schema({
+    name: String,
+    des: String,
+    price: Number,
+    imgURL: String
 })
 
-module.exports = mongoose.model('Coffee', coffeeSchema)
+const CoffeeModel = mongoose.model('Coffee', coffeeSchema)
+
+module.exports =  CoffeeModel

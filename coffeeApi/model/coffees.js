@@ -56,14 +56,12 @@ const coffees = [
         des: 'Espresso shot,mocha sauce and whipped cream',
         price: 145,
     },
-
     {
         id: '9',
         name: 'Brewed Coffee',
         des: 'Coffee and hot water with simply dripbrewed',
         price: 145,
-    },
-
+    }
 ]
 
 exports.findAll = function() {
