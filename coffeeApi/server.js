@@ -1,4 +1,3 @@
-//expressJS
 const express = require('express')
 const cors = require('cors')
 const app = express()
@@ -13,6 +12,7 @@ mongoose.connect(dbBucket, { useUnifiedTopology: true, useNewUrlParser: true })
 //Middlewares
 var coffeeRouter = require('./routes/coffees')
 var cartItemRouter = require('./routes/cartItems')
+
 app.use(express.json())
 app.use(cors())
 app.use('/coffees', coffeeRouter)
