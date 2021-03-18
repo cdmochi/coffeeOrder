@@ -1,3 +1,4 @@
+
 var coffees = [];
 
 //document ready

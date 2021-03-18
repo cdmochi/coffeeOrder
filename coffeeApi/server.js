@@ -9,17 +9,14 @@ const dbBucket = "mongodb+srv://pete:peterparker@chuanprojectcluster.07gng.mongo
 
 const mongoose = require('mongoose')
 mongoose.connect(dbBucket, { useUnifiedTopology: true, useNewUrlParser: true })
-//const db = mongoose.connection
-//db.on('error', (error) => console.error(error))
-//db.once('open', () => console.log('connected to database') )
-
 
 //Middlewares
-//var data = require('./model/coffees')
 var coffeeRouter = require('./routes/coffees')
+var cartItemRouter = require('./routes/cartItems')
 app.use(express.json())
 app.use(cors())
 app.use('/coffees', coffeeRouter)
+app.use('/cartItems', cartItemRouter)
 
 app.get('/', (req,res) => {
     res.send('Database Connected Successfully at port ' + PORT)
