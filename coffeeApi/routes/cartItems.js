@@ -2,6 +2,9 @@ const express = require('express')
 const CartItem = require('../model/CartItem')
 const router = express.Router()
 
+//CREATE READ UPDATE DELETE
+
+//get all
 router.get('/',async (req, res) => {
     let items = await CartItem.find()
     res.json({
@@ -10,6 +13,7 @@ router.get('/',async (req, res) => {
     })
 })
 
+//add item to cart
 router.post('/', async (req, res) => {
     const payload = req.body
     const cartItem = new CartItem({
@@ -22,10 +26,27 @@ router.post('/', async (req, res) => {
     res.status(201).send(cartItem)
 })
 
+//delete item from cart
 router.delete('/delete?:id', async (req, res) => {
     let id = req.params.id
     console.log('Deleting Item as ID:' + id)
     await CartItem.findByIdAndDelete(id)
+})
+
+
+//not finish
+router.post('/update?:id', async (req, res) => {
+    let id = req.params.id
+    res.send(id)
+    console.log("hehehehehe:" + id)
+    //await CartItem.findByIdAndUpdate(id, { name: name },
+        //function(err, docs) {
+            //if(err) {
+                //console.log(err)
+            //} else {
+                //console.log("Updated successful:",docs)
+            //}
+        //})
 })
 
 module.exports = router
