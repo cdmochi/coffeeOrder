@@ -1,11 +1,12 @@
 var coffees = [];
 
+
 //document ready
 $(document).ready(function () {
     console.log('running');
     //request coffeesList
     onLoadCoffees();
-    onUpdateUI();
+    // onUpdateUI();
 });
 
 function onLoadCoffees() {
@@ -16,14 +17,14 @@ function onLoadCoffees() {
         url: endpoint,
         contentType: 'application/json',
         dataType: 'json',
-        success: function(result) {
+        success: function (result) {
             console.log('api requested successfully: ' + result.statusCode);
             let coffeeItem = result.data
             console.log(coffeeItem.length)
             var index;
             for (index = 0; index < coffeeItem.length; index++) {
                 let item = coffeeItem[index]
-                console.log(item.name +":"+ item.name)
+                console.log(item.name + ":" + item.name)
                 coffees.push(
                     new Coffee(
                         item._id,
@@ -35,8 +36,29 @@ function onLoadCoffees() {
                 )
                 onUpdateUIAtPos(index);
             }
+
+            $(".onButtonClick").click(function () {
+                var buttonId = $(this).attr('id')
+                let coffeeModel = findCoffeeModelById(buttonId)
+                //ยิง post ตรงนี้
+                console.log(coffeeModel)
+            })
         }
     });
+}
+
+var itemBox = null
+
+function findCoffeeModelById(id) {
+    var i
+    for(i = 0; i < coffees.length; i++) {
+        let item = coffees[i]
+        let itemId = item.id
+        console.log("this is id" + itemId)
+        if (itemId == id) {
+            return item
+        }
+    }
 }
 
 function onUpdateUIAtPos(position) {
@@ -52,6 +74,8 @@ function onUpdateUI() {
 }
 
 function addNewCoffeeItem(coffeeItem) {
+    let data = coffeeItem.id
+    console.log("กูมีค่า่" + data)
     $('#coffeeContainer')
         .append(
             `<div class="col-4">
@@ -61,8 +85,7 @@ function addNewCoffeeItem(coffeeItem) {
                 <p>${coffeeItem.description}</p>
                 <p>${coffeeItem.price} Baht</p>
                 </div>  
-                <a href="#" class="btn" id=${coffeeItem.id}> Buy </a>
-
+                <button href="#" class="btn onButtonClick" id=${coffeeItem.id}> Buy </button>
             </div>`
         );
 }

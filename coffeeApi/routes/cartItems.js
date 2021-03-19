@@ -27,10 +27,17 @@ router.post('/', async (req, res) => {
 })
 
 //delete item from cart
-router.delete('/delete?:id', async (req, res) => {
+router.delete('/delete/:id', async (req, res) => {
     let id = req.params.id
     console.log('Deleting Item as ID:' + id)
-    await CartItem.findByIdAndDelete(id)
+    var removeCallback = CartItem.findOneAndDelete({ _id: id}, res.body, function(err, data) {
+        if(!err) {
+            console.log("deleted")
+            res.send({deleted: id })
+        }
+            
+    })
+        
 })
 
 
