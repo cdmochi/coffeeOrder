@@ -4,7 +4,6 @@ var coffees = [];
 //document ready
 $(document).ready(function () {
     console.log('running');
-    //request coffeesList
     onLoadCoffees();
     // onUpdateUI();
 });
@@ -41,7 +40,9 @@ function onLoadCoffees() {
                 var buttonId = $(this).attr('id')
                 let coffeeModel = findCoffeeModelById(buttonId)
                 //ยิง post ตรงนี้
+                
                 console.log(coffeeModel)
+
             })
         }
     });

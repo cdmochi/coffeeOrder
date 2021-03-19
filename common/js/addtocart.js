@@ -5,12 +5,11 @@ $(document).ready(
 )
 
 //Models
-class Coffee {
-    constructor(id, name, description, price, imgSrc) {
+class CheckoutCoffee {
+    constructor(id, name, price, amount) {
+        this.amount = amount;
         this.id = id;
         this.name = name;
-        this.description = description;
         this.price = price;
-        this.imgSrc = imgSrc;
     }
 };
