@@ -4,7 +4,6 @@ $(document).ready(
     }
 )
 
-
 //Models
 class Coffee {
     constructor(id, name, description, price, imgSrc) {
