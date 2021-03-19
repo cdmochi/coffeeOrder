@@ -1,4 +1,5 @@
 const express = require('express')
+const bodyParser = require('body-parser')
 const cors = require('cors')
 const app = express()
 let PORT = 3000
@@ -13,8 +14,9 @@ mongoose.connect(dbBucket, { useUnifiedTopology: true, useNewUrlParser: true })
 var coffeeRouter = require('./routes/coffees')
 var cartItemRouter = require('./routes/cartItems')
 
-app.use(express.json())
 app.use(cors())
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true}))
 app.use('/coffees', coffeeRouter)
 app.use('/cartItems', cartItemRouter)
 

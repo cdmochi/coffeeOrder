@@ -39,16 +39,31 @@ function onLoadCoffees() {
             $(".onButtonClick").click(function () {
                 var buttonId = $(this).attr('id')
                 let coffeeModel = findCoffeeModelById(buttonId)
-                //ยิง post ตรงนี้
-                
-                console.log(coffeeModel)
+                console.log(coffeeModel.name)
+                console.log(coffeeModel.des)
+                console.log(coffeeModel.price)
+                console.log(coffeeModel.imgURL)
 
+                if(coffeeModel != null) {
+                    let addToCartEndpoint = "http://localhost:3000/cartItems"
+                    $.post(
+                        addToCartEndpoint,
+                        {
+                            name: coffeeModel.name,
+                            des: coffeeModel.descriptionj, 
+                            price: coffeeModel.price,
+                            imgURL: coffeeModel.imgSrc
+                        }, 
+                        function(data, status) {
+                            console.log(`${data} with status ${status}`)
+                        }
+                    )
+                    console.log(coffeeModel)
+                }
             })
         }
     });
 }
-
-var itemBox = null
 
 function findCoffeeModelById(id) {
     var i
@@ -76,7 +91,6 @@ function onUpdateUI() {
 
 function addNewCoffeeItem(coffeeItem) {
     let data = coffeeItem.id
-    console.log("กูมีค่า่" + data)
     $('#coffeeContainer')
         .append(
             `<div class="col-4">

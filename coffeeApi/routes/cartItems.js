@@ -16,6 +16,10 @@ router.get('/',async (req, res) => {
 //add item to cart
 router.post('/', async (req, res) => {
     const payload = req.body
+    console.log(`positing name ${payload.name}`)
+    console.log(`positing des ${payload.des}`)
+    console.log(`positing price ${payload.price}`)
+    console.log(`positing imgURL ${payload.imgURL}`)
     const cartItem = new CartItem({
         name: payload.name,
         des: payload.des,
