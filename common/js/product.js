@@ -5,6 +5,7 @@ $(document).ready(function () {
     console.log('running');
     onLoadCoffees();
     // onUpdateUI();
+    $('body').bootstrapMaterialDesign();
 });
 
 function onLoadCoffees() {
@@ -45,9 +46,10 @@ function onLoadCoffees() {
                 //when button of item is clicked
                 onOpenModel()
                 console.log(JSON.stringify(coffeeModel))
-                let amountOrdered = $('#npAmountPicker').val()
                 $('#btAddToCart').click(function() {
+                    var amountOrdered = $('#npAmountPicker').val()
                     addCoffeeToCart(coffeeModel, amountOrdered)
+                    onCloseModel()
                 })
             })
         }
@@ -65,10 +67,11 @@ function addCoffeeToCart(coffeeModel, amountOrdered) {
                 des: coffeeModel.description, 
                 price: coffeeModel.price,
                 imgUrl: coffeeModel.imgSrc,
-                amount: amountOrdered
+                amount: parseInt(amountOrdered)
             }, 
             function(data, status) {
                 console.log(`${JSON.stringify(JSON.stringify(coffeeModel) )} with status ${status}`)
+                $('')
             }
         )
 
@@ -120,7 +123,7 @@ function onOpenModel() {
 }
 
 function onCloseModel() {
-    $('#exampleModal').modal('hide')
+    $('#exampleModal .close').click()
 }
 
 //Models

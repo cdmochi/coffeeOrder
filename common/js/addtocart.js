@@ -2,6 +2,7 @@ var cart = []
 $(document).ready( 
     function(){
         onLoadCart()
+            
     }
 )
 
@@ -31,12 +32,12 @@ function onLoadCart() {
                 )
                 onUpdateUIAtPos(index)
             }
-            if(cart.lenght == 0) {
-                $('#btCheckout').hide()
-            }
             updateCartTotals()
             console.log("result:" + JSON.stringify(cart))
             setOnItemDeleteListener()
+            if(cart.length == 0) {
+                $('#dvTotals').hide()
+            }
         }
     });
 }
@@ -76,6 +77,7 @@ function updateCartTotals() {
 
 function updateCartUI(itemcart) {
     console.log("imgSrc is " + itemcart.imgSrc)
+    console.log(itemcart.amount)
     $('#first-coffee')
         .append(
             `<tr> <!--Table row-->
@@ -91,7 +93,7 @@ function updateCartUI(itemcart) {
                     </div>
 
                 </td>
-                <td><input  type="number" value="${itemcart.amount}"></td>
+                <td><input type="number" value="${itemcart.amount}" readonly></td>
                 <td>${itemcart.amount * itemcart.price} Baht</td>
             </tr>`
         )
