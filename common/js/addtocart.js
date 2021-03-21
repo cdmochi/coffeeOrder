@@ -1,3 +1,6 @@
+
+
+
 $(document).ready( 
     function(){
         
@@ -25,15 +28,19 @@ function onLoadCart() {
                 console.log(item.name + ":" + item.name)
                 cart.push(
                     new CheckoutCoffee(
-
-                        item.id,
-                        item.name,
-                        item.price,
-                        item.img
+                        // amout
+                        // id 
+                        //
+                        //
+                        //
+                        
                         
                     )
                 )
-                onUpdateUIAtPos(index);
+                 
+                // after add item then update
+                // calculate result from list Api to find Amount of each item 
+                // create a new list
             }
 
             $(".onButtonClick").click(function () {
@@ -79,6 +86,8 @@ function updatecartui(Itemcart) {
             
         );
 }
+
+
 
 
 
