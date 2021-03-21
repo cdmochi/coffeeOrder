@@ -17,7 +17,6 @@
 
 
 
-
 </head>
 
 <body>
@@ -60,114 +59,38 @@
                 
             </tr>
 
-            <tr> <!--Table row-->
-                <td> <!--Table data-->
-                    <div class="cart-info">
-                        <img src="common/images/Espresso.png" >
-                        <div>
-                            <p> Esspresso </p>
-                            <small>Price: 150 Baht </small>
-                            <br>
-                            <a href="#"> Remove</a>
-                            
-                        </div>
-                    </div>
+            <!--product will be here-->
 
-                </td>
-                <td><input type="number" value="1"></td>
-                <td>150 Baht</td>
-                
-            </tr>
-
-
-
-
-
-            <tr> <!--Table row-->
-                <td> <!--Table data-->
-                    <div class="cart-info">
-                        <img src="common/images/Espresso.png" >
-                        <div>
-                            <p> Esspresso </p>
-                            <small>Price: 150 Baht </small>
-                            <br>
-                            <a href=""> Remove</a>
-                            
-                        </div>
-                    </div>
-
-                </td>
-                <td><input type="number" value="1"></td>
-                
-                <td>150 Baht</td>
-                
-            </tr>
-
-            <tr> <!--Table row-->
-                <td> <!--Table data-->
-                    <div class="cart-info">
-                        <img src="common/images/Espresso.png" >
-                        <div>
-                            <p> Esspresso </p>
-                            <small>Price: 150 Baht </small>
-                            <br>
-                            <a href=""> Remove</a>
-                            
-                        </div>
-                    </div>
-
-                </td>
-                <td><input type="number" value="1"></td>
-                <td>150 Baht</td>
-                
-            </tr>
-            <tr> <!--Table row-->
-                <td> <!--Table data-->
-                    <div class="cart-info">
-                        <img src="common/images/Espresso.png" >
-                        <div>
-                            <p> Esspresso </p>
-                            <small>Price: 150 Baht </small>
-                            <br>
-                            <a href=""> Remove</a>
-                            
-                        </div>
-                    </div>
-
-                </td>
-                <td><input type="number" value="1"></td>
-                <td>150 Baht</td>
-                
-            </tr>
         </table>
 
         <div class="total-price">
-         <table>
-             <tr>
-                 <td> Total Item</td>
-                 <td> 150 Baht </td>
-             </tr>
+            <table>
+                <tr>
+                    <td>Total in Cart</td>
+                    <td id="tdTotalItem"> </td>
+                </tr>
 
-             <tr>
-                <td> Total price </td>
-                <td> 150 Baht </td>
-            </tr>
-            <tr align="right"> 
-                <td>
-                    <button type="button" class="btn">Checkout</button>
-                </td>
-            </tr>
+                <tr>
+                    <td> Total price </td>
+                    <td id="tdTotalPrice"> </td>
+                </tr>
+                <tr align="right"> 
+                    <td>
+                        <button type="button" id="btCheckout" class="btn">Checkout</button>
+                    </td>
+                </tr>
 
-         </table>
+            </table>
         </div>
 
     </div>
 
     <footer>
 
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
-        <script src="common/js/addtocart.js" ></script>
+        <script src="./common/js/addtocart.js" ></script>
     </footer>
 
 

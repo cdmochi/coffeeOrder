@@ -5,13 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coffee</title>
-    <link rel="stylesheet" href="common/css/styless.css">
 
     <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat&family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    href="https://fonts.googleapis.com/css2?family=Montserrat&family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+    <!--<link rel="preconnect" href="https://fonts.gstatic.com">-->
+    <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">-->
+
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+    <link rel="stylesheet" href="common/css/styless.css">
+
 
 </head>
 
@@ -24,16 +29,15 @@
                 <img src="common/images/coffee_clique.png" width="120px">
             </a>
 
-
             <nav>
                 <ul>
-                    <li><a href="Home.html">Home</a> </li>
-                    <li><a href="product.html">Menu</a> </li>
-                    <li><a href="aboutus.html">About Us</a> </li>
-                    <li><a href="">Contact</a> </li>
-                    <li><a href="">Account</a> </li>
+                    <li><a class = "legend" href="Home.html">Home</a> </li>
+                    <li><a class = "legend" href="product.html">Menu</a> </li>
+                    <li><a class = "legend" href="aboutus.html">About Us</a> </li>
+                    <li><a class = "legend" href="">Contact</a> </li>
+                    <li><a class = "legend" href="">Account</a> </li>
                     <li>
-                    <a href="addtocart.html"><img class="pt-1" src="common/images/shopping-cart.svg" width = "26px" ></a>
+                        <a id = "linkAddToCart" href="addtocart.html"><img class="pt-1" src="common/images/shopping-cart.svg" width = "26px" ></a>
                     </li>
                 </ul>
 
@@ -113,21 +117,48 @@
                 <!--Coffee List will be loaded here-->
 
                 <!-- <div class="page-btn span">
-                    <span> 1 </span>
-                    <span> 2 </span>
-                    <span> 3 </span>
-                    <span> 4 </span>
-
-                    </div> -->
+                    <!--<span> 1 </span>-->
+                    <!--<span> 2 </span>-->
+                    <!--<span> 3 </span>-->
+                    <!--<span> 4 </span>-->
+                    <!---->
+                    <!--</div> -->
 
             </div>
 
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Add to Cart?</h5>
+                            <button type="button" class="close" id="btCloseModel" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <ul style="list-style: none">
+                                <li>
+                                    <td><input type="number" value="1" id="npAmountPicker" min="1"></td>
+                                <li>
+                            </ul>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" id = "btAddToCart">Add To Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 </body>
 
 <footer>
 
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
+
 
     <script src="common/js/product.js" ></script>
 </footer>

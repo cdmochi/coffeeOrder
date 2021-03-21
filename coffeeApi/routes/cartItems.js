@@ -3,7 +3,6 @@ const CartItem = require('../model/CartItem')
 const router = express.Router()
 
 //CREATE READ UPDATE DELETE
-
 //get all
 router.get('/',async (req, res) => {
     let items = await CartItem.find()
@@ -16,15 +15,19 @@ router.get('/',async (req, res) => {
 //add item to cart
 router.post('/', async (req, res) => {
     const payload = req.body
+    console.log(payload)
     console.log(`positing name ${payload.name}`)
     console.log(`positing des ${payload.des}`)
     console.log(`positing price ${payload.price}`)
-    console.log(`positing imgURL ${payload.imgURL}`)
+    console.log(`positing imgURL ${payload.imgUrl}`)
+    console.log(`positing amound ${payload.amount}`)
+
     const cartItem = new CartItem({
         name: payload.name,
         des: payload.des,
         price: payload.price,
-        imgURL: payload.imgURL
+        imgUrl: payload.imgUrl,
+        amount: payload.amount
     })
     await cartItem.save()
     res.status(201).send(cartItem)
@@ -39,11 +42,9 @@ router.delete('/delete/:id', async (req, res) => {
             console.log("deleted")
             res.send({deleted: id })
         }
-            
     })
         
 })
-
 
 //not finish
 router.post('/update?:id', async (req, res) => {

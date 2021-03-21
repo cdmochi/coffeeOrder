@@ -1,15 +1,12 @@
+var cart = []
 $(document).ready( 
     function(){
-        
+        onLoadCart()
     }
 )
 
-
-cart=[]
-
 function onLoadCart() {
-
-    let endpoint = 'http://localhost:3000/#'
+    let endpoint = 'http://localhost:3000/cartItems'  
     $.ajax({
         type: 'GET',
         url: endpoint,
@@ -18,76 +15,96 @@ function onLoadCart() {
         success: function (result) {
             console.log('api requested successfully: ' + result.statusCode);
             let cartItem = result.data
-            console.log(cartItem.length)
+            console.log("before" + JSON.stringify(cartItem))
             var index;
             for (index = 0; index < cartItem.length; index++) {
                 let item = cartItem[index]
-                console.log(item.name + ":" + item.name)
                 cart.push(
                     new CheckoutCoffee(
-
-                        item.id,
+                        item._id,
                         item.name,
+                        item.des,
                         item.price,
-                        item.img
-                        
+                        item.imgUrl,
+                        item.amount
                     )
                 )
-                onUpdateUIAtPos(index);
+                onUpdateUIAtPos(index)
             }
-
-            $(".onButtonClick").click(function () {
-                var buttonId = $(this).attr('id')
-                let coffeeModel = findCoffeeModelById(buttonId)
-                //ยิง post ตรงนี้
-                
-                console.log(coffeeModel)
-
-            })
+            if(cart.lenght == 0) {
+                $('#btCheckout').hide()
+            }
+            updateCartTotals()
+            console.log("result:" + JSON.stringify(cart))
+            setOnItemDeleteListener()
         }
     });
 }
 
+function setOnItemDeleteListener() {
+    $(".onButtonClick").click(function() {
+        var buttonId = $(this).attr('id')
+        let endpoint = `http://localhost:3000/cartItems/delete/${buttonId}`
+        $.ajax({
+            url: endpoint,
+            type: 'DELETE',
+            success: function(result) {
+                console.log("deleted:" + JSON.stringify(result))
+            }
 
+        })
 
+    })
+}
 
+function onUpdateUIAtPos(position) {
+    let cartItem = cart[position]
+    updateCartUI(cartItem)
+}
 
+function updateCartTotals() {
+    var totalItem = 0
+    var totalPrice = 0
+    for(i = 0; i < cart.length; i++) {
+        let item = cart[i]
+        totalItem++
+        totalPrice +=   (item.price * item.amount)
+    }
+    $('#tdTotalItem').text(totalItem.toString() + " Item")
+    $('#tdTotalPrice').text(totalPrice.toString() + " Bath")
+}
 
-function updatecartui(Itemcart) {
-    let data = Itemcart.id
-    console.log("productList" + data)
-    
-
+function updateCartUI(itemcart) {
+    console.log("imgSrc is " + itemcart.imgSrc)
     $('#first-coffee')
         .append(
             `<tr> <!--Table row-->
                 <td> <!--Table data-->
-                <div class="cart-info">
-                <img src=${Itemcart.imgSrc}" >
-                <div>
-                <p>${Itemcart.name}</p>
-                <small>${Itemcart.price} </small>
-                <br>
-                <a href="#"class="btn onButtonClick" id=${Itemcart.id}> Remove </a>           
-            </div>
-        </div>  
-        </td>
-                <td><input type ="number" value="1"</td>
-                <td>150 Baht</td>                
-        </tr>`
-            
-            
-        );
+                    <div class="cart-info">
+                        <img src= ${itemcart.imgSrc} >
+                        <div>
+                            <p> ${itemcart.name}</p>
+                            <small>Price: ${itemcart.price} Baht </small>
+                            <br>
+                            <a id=${itemcart.id} class="onButtonClick" href=""> Remove</a>
+                        </div>
+                    </div>
+
+                </td>
+                <td><input  type="number" value="${itemcart.amount}"></td>
+                <td>${itemcart.amount * itemcart.price} Baht</td>
+            </tr>`
+        )
 }
-
-
 
 //Models
 class CheckoutCoffee {
-    constructor(id, name, price, amount) {
-        this.amount = amount;
+    constructor(id, name, des,price,imgSrc ,amount) {
         this.id = id;
         this.name = name;
+        this.des = des;
         this.price = price;
+        this.imgSrc = imgSrc;
+        this.amount = amount;
     }
 };

@@ -4,7 +4,7 @@ const router = express.Router()
 const mongoose = require('mongoose')
 const Coffee = require('../model/Coffee')
 
-router.get('/',async (req, res) => {
+router.get('/',async (req,res) => {
     const result = await Coffee.find()
     res.json( {
         statusCode: 200,

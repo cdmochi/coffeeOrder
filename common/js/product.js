@@ -1,6 +1,5 @@
 var coffees = [];
 
-
 //document ready
 $(document).ready(function () {
     console.log('running');
@@ -40,29 +39,41 @@ function onLoadCoffees() {
                 var buttonId = $(this).attr('id')
                 let coffeeModel = findCoffeeModelById(buttonId)
                 console.log(coffeeModel.name)
-                console.log(coffeeModel.des)
+                console.log(coffeeModel.description)
                 console.log(coffeeModel.price)
-                console.log(coffeeModel.imgURL)
-
-                if(coffeeModel != null) {
-                    let addToCartEndpoint = "http://localhost:3000/cartItems"
-                    $.post(
-                        addToCartEndpoint,
-                        {
-                            name: coffeeModel.name,
-                            des: coffeeModel.descriptionj, 
-                            price: coffeeModel.price,
-                            imgURL: coffeeModel.imgSrc
-                        }, 
-                        function(data, status) {
-                            console.log(`${data} with status ${status}`)
-                        }
-                    )
-                    console.log(coffeeModel)
-                }
+                console.log(coffeeModel.imgSrc)
+                //when button of item is clicked
+                onOpenModel()
+                console.log(JSON.stringify(coffeeModel))
+                let amountOrdered = $('#npAmountPicker').val()
+                $('#btAddToCart').click(function() {
+                    addCoffeeToCart(coffeeModel, amountOrdered)
+                })
             })
         }
     });
+}
+
+function addCoffeeToCart(coffeeModel, amountOrdered) {
+    console.log(`amount is ${amountOrdered}`)
+    if(coffeeModel != null) {
+        let addToCartEndpoint = "http://localhost:3000/cartItems"
+        $.post(
+            addToCartEndpoint,
+            {
+                name: coffeeModel.name,
+                des: coffeeModel.description, 
+                price: coffeeModel.price,
+                imgUrl: coffeeModel.imgSrc,
+                amount: amountOrdered
+            }, 
+            function(data, status) {
+                console.log(`${JSON.stringify(JSON.stringify(coffeeModel) )} with status ${status}`)
+            }
+        )
+
+        console.log(coffeeModel)
+    }
 }
 
 function findCoffeeModelById(id) {
@@ -82,16 +93,11 @@ function onUpdateUIAtPos(position) {
     addNewCoffeeItem(coffeeItem)
 }
 
-
 function onUpdateUI() {
     coffees.forEach(function (item) {
         addNewCoffeeItem(item);
     });
 }
-
-
-
-
 
 function addNewCoffeeItem(coffeeItem) {
     let data = coffeeItem.id
@@ -107,6 +113,14 @@ function addNewCoffeeItem(coffeeItem) {
                 <button href="#" class="btn onButtonClick" id=${coffeeItem.id}> Buy </button>
             </div>`
         );
+}
+
+function onOpenModel() {
+    $('#exampleModal').modal('show')
+}
+
+function onCloseModel() {
+    $('#exampleModal').modal('hide')
 }
 
 //Models
