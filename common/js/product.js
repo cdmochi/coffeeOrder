@@ -1,3 +1,4 @@
+
 var coffees = [];
 
 //document ready
@@ -6,8 +7,8 @@ $(document).ready(function () {
     onLoadCoffees();
     // onUpdateUI();
     $('body').bootstrapMaterialDesign();
-});
 
+})
 function onLoadCoffees() {
 
     let endpoint = 'http://localhost:3000/coffees'
