@@ -570,3 +570,87 @@ h6{
 }
 
 
+
+/*Promotion*/
+
+.Promotion{
+    width: 80%;
+    margin: auto;
+    text-align: left;
+    padding-top: 50px;
+}
+
+.promo-col{
+    flex-basis: 31%;
+    background: #fcf9f9;
+    border-radius: 10px;
+    margin-bottom: 5%;
+    padding: 20px 12px;
+    box-sizing: border-box;
+    cursor: pointer;
+    transition: transform 0.5s;  
+
+
+    
+
+}
+
+
+
+
+
+.product-promo{
+    width: 80%;
+    margin: auto;
+    text-align: center;
+    padding-top: 50px;
+    cursor: pointer;
+    transition: transform 0.5s;  
+}
+
+.product-promo-col{
+    flex-basis: 32%;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    position: relative;
+    overflow: hiden;
+    transition: transform 0.5s;   
+
+}
+
+.row-pro{
+    margin-top: 7%;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.p-2{
+
+    color: rgb(190, 186, 186);
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 22px;
+    padding: 10px;
+
+}
+
+
+/*.col-4{
+    flex-basis: 30%;
+    padding: 10px;
+    min-width: 200px;
+    margin-bottom: 50px;
+    transition: transform 0.5s;
+}*/
+
+/*.promo-col img{
+    width: 100%;
+}*/
+
+
+
+
+
+
+
