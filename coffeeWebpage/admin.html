@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+
+    <head>
+        <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+        <!--material icon-->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <!--fonts-->
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link rel="stylesheet" href="./common/css/adminStyle.css">
+        
+        <!--fonts-->
+    </head>
+
+    <body>
+
+        <div>
+            <div class="mdc-data-table">
+                <div class="mdc-data-table__table-container">
+                    <table class="mdc-data-table__table" aria-label="Dessert calories">
+                        <thead>
+                            <tr class="mdc-data-table__header-row">
+                                <th class="mdc-data-table__header-cell" role="columnheader" scope="col">Dessert</th>
+                                <th class="mdc-data-table__header-cell mdc-data-table__header-cell--numeric" role="columnheader" scope="col">Carbs (g)</th>
+                                <th class="mdc-data-table__header-cell mdc-data-table__header-cell--numeric" role="columnheader" scope="col">Protein (g)</th>
+                                <th class="mdc-data-table__header-cell" role="columnheader" scope="col">Comments</th>
+                            </tr>
+                        </thead>
+                        <tbody class="mdc-data-table__content">
+                            <tr class="mdc-data-table__row">
+                                <th class="mdc-data-table__cell" scope="row">Frozen yogurt</th>
+                                <td class="mdc-data-table__cell mdc-data-table__cell--numeric">24</td>
+                                <td class="mdc-data-table__cell mdc-data-table__cell--numeric">4.0</td>
+                                <td class="mdc-data-table__cell">Super tasty</td>
+                            </tr>
+                            <tr class="mdc-data-table__row">
+                                <th class="mdc-data-table__cell" scope="row">Ice cream sandwich</th>
+                                <td class="mdc-data-table__cell mdc-data-table__cell--numeric">37</td>
+                                <td class="mdc-data-table__cell mdc-data-table__cell--numeric">4.33333333333</td>
+                                <td class="mdc-data-table__cell">I like ice cream more</td>
+                            </tr>
+                            <tr class="mdc-data-table__row">
+                                <th class="mdc-data-table__cell" scope="row">Eclair</th>
+                                <td class="mdc-data-table__cell mdc-data-table__cell--numeric">24</td>
+                                <td class="mdc-data-table__cell mdc-data-table__cell--numeric">6.0</td>
+                                <td class="mdc-data-table__cell">New filing flavor</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div> 
+
+        </div>
+
+        <!--Dialog-->
+        <div class="mdc-dialog">
+            <div class="mdc-dialog__container">
+                <div class="mdc-dialog__surface"
+                     role="alertdialog"
+                     aria-modal="true"
+                     aria-labelledby="my-dialog-title"
+                     aria-describedby="my-dialog-content">
+                    <div class="mdc-dialog__content" id="my-dialog-content">
+                        Discard draft?
+                    </div>
+                    <div class="mdc-dialog__actions">
+                        <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="cancel">
+                            <div class="mdc-button__ripple"></div>
+                            <span class="mdc-button__label">Cancel</span>
+                        </button>
+                        <button type="button" class="mdc-button mdc-dialog__button" onclick="addProduct()">
+                            <div class="mdc-button__ripple"></div>
+                            <span class="mdc-button__label">Discard</span>
+                        </button>
+                    </div>
+
+                    <i class="material-icons mdc-button__icon" aria-hidden="true">logout</i>
+
+                </div>
+            </div>
+            <div class="mdc-dialog__scrim"></div>
+        </div>
+
+    </body>
+
+    <footer>
+        <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+        <!--jQuery-->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
+        <!-- TODO: Add SDKs for Firebase products that you want to use
+            https://firebase.google.com/docs/web/setup#available-libraries -->
+            <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-analytics.js"></script>
+            <!--firebase auth-->
+            <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-auth.js"></script>
+            <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-storage.js"></script>
+
+            <script src="./common/js/admin.js" ></script>
+    </footer>
+
+</html>
