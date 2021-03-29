@@ -5,6 +5,8 @@ const dialog = new mdc.dialog.MDCDialog(document.querySelector('.mdc-dialog'));
 const emailTv = $('#tvEmail')
 const passwordTv = $('#tvPassword')
 
+
+
 $(document).ready(function(){
     const textFields = [].map.call(document.querySelectorAll('.mdc-text-field'), function(el) {
         return new mdc.textField.MDCTextField(el);
@@ -24,6 +26,8 @@ $(document).ready(function(){
     });
 
 
+    
+
     $('#btCheckout').click(() => {
         if(currentUser == null) {
             dialog.open()
@@ -40,6 +44,13 @@ $(document).ready(function(){
     });
 })
 
+
+
+
+
+
+
+
 function onLoadCart() {
     let endpoint = 'http://localhost:3000/cartItems'  
     $.ajax({
@@ -55,6 +66,7 @@ function onLoadCart() {
             for (index = 0; index < cartItem.length; index++) {
                 let item = cartItem[index]
                 cart.push(
+
                     new CheckoutCoffee(
                         item._id,
                         item.name,
@@ -67,6 +79,11 @@ function onLoadCart() {
                 )
                 onUpdateUIAtPos(index)
             }
+
+
+
+
+
             updateCartTotals()
             console.log("result:" + JSON.stringify(cart))
             setOnItemDeleteListener()
@@ -76,6 +93,9 @@ function onLoadCart() {
         }
     });
 }
+
+
+
 
 function onLogin() {
     console.log(`email is ${emailTv.val()}`)
@@ -101,7 +121,12 @@ function onLogin() {
 
 function onLogout() {
     dialog.close() 
+
+
 }
+
+
+
 
 function setOnItemDeleteListener() {
     $(".onButtonClick").click(function() {
@@ -117,6 +142,9 @@ function setOnItemDeleteListener() {
 
     })
 }
+
+
+
 
 function onUpdateUIAtPos(position) {
     let cartItem = cart[position]

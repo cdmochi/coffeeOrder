@@ -46,6 +46,9 @@ router.delete('/delete/:id', async (req, res) => {
         
 })
 
+
+
+
 //not finish
 router.post('/update?:id', async (req, res) => {
     let id = req.params.id
