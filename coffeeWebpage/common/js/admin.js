@@ -6,9 +6,19 @@ const dataTable = new mdc.dataTable.MDCDataTable(document.querySelector('.mdc-da
 
 
 $(document).ready(function() {
+
+   
+    
+
+    
     const textFields = [].map.call(document.querySelectorAll('.mdc-text-field'), function(el) {
         return new mdc.textField.MDCTextField(el);
     });
+
+    onLoadCart()
+
+
+    
 
 
 
@@ -30,14 +40,18 @@ $(document).ready(function() {
     dialog.open()
 })
 
+
+
 function addProduct() {
     console.log('dddddddddddddddddddddd')
 }
 
 
 
+
+
 function onLoadCart() {
-    let endpoint = 'http://localhost:3000/adminItem'  
+    let endpoint = 'http://localhost:3000/coffees'  
     $.ajax({
         type: 'GET',
         url: endpoint,
@@ -48,7 +62,7 @@ function onLoadCart() {
             let adminItem = result.data
             console.log("before" + JSON.stringify(adminItem))
             var index;
-            for (index = 0; index < cartItem.length; index++) {
+            for (index = 0; index < adminItem.length; index++) {
                 let item = adminItem[index]
                 admin.push(
 
@@ -57,23 +71,72 @@ function onLoadCart() {
                         item.name,
                         item.des,
                         item.price,
-                        item.imgUrl
+                        item.imgURL
                         
                         
                     )
                 )
-                onUpdateUIAtPos(index)
+                
             }
 
-            updateCartTotals()
-            console.log("result:" + JSON.stringify(adminItem))
-            setOnItemDeleteListener()
-            if(adminItem.length == 0) {
-                $('#dvTotals').hide()
-            }
+            
         }
     });
 }
+
+
+function addNewCoffeeItem(coffeeItem) {
+    let data = coffeeItem.id
+    $('#container-admin')
+        .append(
+            ` <tr class="mdc-data-table__row">
+
+            <th class="mdc-data-table__cell" scope="row">Esspresso</th>
+            <td class="mdc-data-table__cell" scope="row"> A perfectly brewed coffee with<br> exquisite balance, and aroma.</br> </td>
+            <th class="mdc-data-table__cell" scope="row">70</th>
+            <!---td class="mdc-data-table__cell mdc-data-table__cell--numeric">70</td--->
+            
+            <td class="mdc-data-table__cell"><img src="common/images/Espresso.png" width = "55px" > </td>
+
+            <td><div class="mdc-dialog__actions">
+                <button type="button-delete" class="mdc-button mdc-dialog__button" onclick="Delete()">
+                    <div class="mdc-button__ripple"></div>
+                    <span class="mdc-button__label"scope="row">Delete</span>
+
+                    
+                </button>
+            
+            </td>
+
+            <td><div class="mdc-dialog__actions">
+                <button type="button-delete" class="mdc-button mdc-dialog__button" onclick="Edit()">
+                    <div class="mdc-button__ripple"></div>
+                    <span class="mdc-button__label"scope="row">Edit</span>
+
+                    
+                </button>
+            
+            </td>
+            
+        </tr>
+                
+            `
+        );
+}
+
+
+
+
+
+
+
+function onUpdateUI() {
+    coffees.forEach(function (item) {
+        addNewCoffeeItem(item);
+    });
+}
+
+
 
 
 
@@ -94,14 +157,13 @@ function onAdd() {
     
 }
 
+
+
 function onLogout() {
     dialog.close() 
 
 
 }
-
-
-
 
 
 function setOnItemDeleteListener() {
@@ -124,19 +186,6 @@ function onUpdateUIAtPos(position) {
     let adminItem = admin[position]
     updateCartUI(adminItem)
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

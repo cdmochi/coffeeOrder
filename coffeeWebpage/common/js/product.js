@@ -37,6 +37,8 @@ function onLoadCoffees() {
                 onUpdateUIAtPos(index);
             }
 
+
+
             $(".onButtonClick").click(function () {
                 var buttonId = $(this).attr('id')
                 let coffeeModel = findCoffeeModelById(buttonId)
@@ -118,6 +120,15 @@ function addNewCoffeeItem(coffeeItem) {
             </div>`
         );
 }
+
+
+
+
+
+
+
+
+
 
 function onOpenModel() {
     $('#exampleModal').modal('show')

@@ -163,6 +163,7 @@ function updateCartTotals() {
     $('#tdTotalPrice').text(totalPrice.toString() + " Bath")
 }
 
+
 function updateCartUI(itemcart) {
     console.log("imgSrc is " + itemcart.imgSrc)
     console.log(itemcart.amount)
