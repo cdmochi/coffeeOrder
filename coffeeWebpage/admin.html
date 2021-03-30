@@ -18,12 +18,10 @@
 
 
         <td><div class="mdc-dialog__actions">
-            <button type="button-add" id="btAdd" class="mdc-button mdc-dialog__button" onclick="Add()">
+            <button type="button-add" id="btAdd" class="mdc-button mdc-dialog__button">
                 <div class="mdc-button__ripple"></div>
 
-                <span class="mdc-button__label"scope="row">Add</span>
-
-                
+                <span class="mdc-button__label"scope="row" >Add</span>
             </button>
 
         
@@ -96,12 +94,12 @@
 
                         <h2 style="text-align: center" class="font-roboto">Add Product</h2>
 
-                    <form  onsubmit="Addfunction()">
+                    <form onsubmit="onSubmitNewCoffee()">
 
                         <label class="mdc-text-field mdc-text-field--filled m-3" >
                             <span class="mdc-text-field__ripple"></span>
                             <span class="mdc-floating-label" id="my-label-id">Product Name </span>
-                            <input class="mdc-text-field__input" type="text" aria-labelledby="my-label-id" required id="tvproduct">
+                            <input class="mdc-text-field__input" type="text" aria-labelledby="my-label-id" id="tvproduct">
                             <span class="mdc-line-ripple"></span>
                         </label>
                     
@@ -126,36 +124,29 @@
                     
                         <br/>
 
-                        <button class="mdc-button mdc-button--outlined" onclick="imgPick()" >
-                            <span class="mdc-button__ripple"></span>
-                            <span class="mdc-button__label">SELECT IMAGE</span>
-                        </button><br/>
+                        <!--<button class="mdc-button mdc-button--outlined" onclick="imgPick()" >-->
+                        <!--<span class="mdc-button__ripple"></span>-->
+                        <!--<span class="mdc-button__label">SELECT IMAGE</span>-->
+                        <!--</button><br/>-->
 
-                        <input id="file-input" type="file" name="name" style="display: none;" required>
+                        <!--<input id="file-input" type="file" name="name" style="display: none;" required>-->
+                        <input type='file' />
+                        <br><img width = "50px" height="50px"id="myImg" src="" style="display: none; margin-left: 5%; margin-top: 5%">
+
+                        <div class="mdc-dialog__actions">
+                            <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="cancel">
+                                <div class="mdc-button__ripple"></div>
+
+                                <span class="mdc-button__label">Cancel</span>
+                            </button>
+
+                            <button type="button" class="mdc-button mdc-dialog__button" onclick="onAdd()"> <div class="mdc-button__ripple"> </div>
+                                <span class="mdc-button__label">ADD</span>
+                            </button>
+
+                        </div>
 
                     </form>    
-
-                    </div>
-
-
-
-                    <div class="mdc-dialog__actions">
-                        <form  onsubmit="Addfunction()">
-                        <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="cancel">
-                            <div class="mdc-button__ripple"></div>
-
-                            <span class="mdc-button__label">Cancel</span>
-                        </button>
-
-                        <button type="button" class="mdc-button mdc-dialog__button" onclick="addProduct()"> <div class="mdc-button__ripple"> </div>
-                            <span class="mdc-button__label">ADD</span>
-                        </button>
-                        </form>
-
-                    </div>
-
-                    </div>
-
 
                 </div>
             </div>

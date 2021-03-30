@@ -1,4 +1,4 @@
-var currentUser = null
+  var currentUser = null
 
 const dialog = new mdc.dialog.MDCDialog(document.querySelector('.mdc-dialog'));
 const emailTv = $('#tvEmail')
@@ -24,7 +24,7 @@ $(document).ready(function() {
         let text = $('#milkTeaTv').text()
 
         pickedItem = new CheckoutCoffee(
-            "0", 
+            "0",
             "Milk Tea Promotion",
             `Iced Milk Tea x 2
             Iced Milk Tea Foam x 2
@@ -46,7 +46,7 @@ $(document).ready(function() {
     $('#coffBeanBt').click(function() {
         let text = $('#coffBeanDes').text()
         pickedItem = new CheckoutCoffee(
-            "1", 
+            "1",
             "Coffee Beans Promotion",
             `Protein Box x 1
             Oat Milk x 1
@@ -64,12 +64,12 @@ $(document).ready(function() {
 
     $('#coffeeMorBt').click(function() {
         let text = $('#breakSandDes').text()
-        pickedItem = new CheckoutCoffee( 
+        pickedItem = new CheckoutCoffee(
             "2",
             "Coffee Morning Set Promotion",
             `Cold Brew x 1
             Dark Cocoa x 1
-            Hamberger x 1`, 
+            Hamberger x 1`,
             89,
             "",
             1,
@@ -91,17 +91,17 @@ function addPromotionItemToCart(coffeeModel, amountOrdered) {
             addToCartEndpoint,
             {
                 name: coffeeModel.name,
-                des: coffeeModel.description, 
+                des: coffeeModel.description,
                 price: coffeeModel.price,
                 imgUrl: coffeeModel.imgSrc,
                 amount: amountOrdered,
                 userId: coffeeModel.userId
-            }, 
+            },
             function(data, status) {
                 console.log(`${JSON.stringify(JSON.stringify(coffeeModel) )} with status ${status}`)
             }
         )
-        
+
         console.log(coffeeModel)
     }
 }

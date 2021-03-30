@@ -82,6 +82,10 @@ function addCoffeeToCart(coffeeModel, amountOrdered) {
     }
 }
 
+function addProduct() {
+    
+}
+
 function findCoffeeModelById(id) {
     var i
     for(i = 0; i < coffees.length; i++) {

@@ -1,17 +1,47 @@
 var admin = []
 var currentUser = null
+var pickedUserImg = null
 
 const dialog = new mdc.dialog.MDCDialog(document.querySelector('.mdc-dialog'));
 const dataTable = new mdc.dataTable.MDCDataTable(document.querySelector('.mdc-data-table'));
-
-
+initFirebase()
+var storage = firebase.storage();
+var storageRef = storage.ref();
+var imagesRef = storageRef.child('images')
 
 $(document).ready(function() {
-    initFirebase()
+    document.querySelector('input[type="file"]').addEventListener('change', function() {
+        var newMetadata = {
+            contentType: 'image/jpeg'
+        };
+        if (this.files && this.files[0]) {
+            var img = document.querySelector('img');
+            img.onload = () => {
+                URL.revokeObjectURL(img.src);  // no longer needed, free memory
+            }
+            img.src = URL.createObjectURL(this.files[0]); // set src to blob url
+            console.log(URL.createObjectURL(this.files[0])) // set src to blob url)
+
+            //var imageURL = URL.createObjectURL(this.files[0])
+            var file = this.files[0]
+            console.log(`filename is ${file.name}`)
+            imagesRef = storageRef.child(file.name)
+            imagesRef.put(file, newMetadata).then((snapshot) => {
+                console.log('Upload a blob or file')
+                imagesRef = storageRef.child(file.name)
+                //show preview
+                imagesRef.getDownloadURL().then((url) => {
+                    $('#myImg').attr('src', url) // set src to blob url)
+                    console.log(url)
+                    $('#myImg').css('display','inline');
+                })
+            })
+        }
+    })
+
     const textFields = [].map.call(document.querySelectorAll('.mdc-text-field'), function(el) {
         return new mdc.textField.MDCTextField(el);
     });
-
     onLoadCart()
 
     $('#btAdd').click(() => {
@@ -20,58 +50,48 @@ $(document).ready(function() {
         } 
     })
 
-
     dialog.listen('MDCDialog:opened', () => {
         console.log("dialog opened")
-        
-
     });
 
     dialog.listen('MDCDialog:closing', function() {
         console.log("dialog close")
     });
-
 })
 
 
 function addProduct() {
     /*console.log('dddddddddddddddddddddd')*/
-    dialog.close() 
-    
-   
+    dialog.close()
 }
 
-
-
-
-
-
-
-
-
-
-
-
-function Addfunction(){
+function onSubmitNewCoffee(){
     console.log(`Product Name is ${tvproduct.val()}`)
     console.log(`Description is ${tvdes.val()}`)
     console.log(`Price is ${tvprice.val()}`)
     console.log(`Image is ${tvimage.val()}`)
 
-    let uproducr = tvproduct.val()
-    let udes = tvdes.val()
-    let uPrice = tvprice.val()
-    let uimg = tvimage.val()
-
-
 }
 
-
-
-
-
-
-  
+function addNewCoffee(coffeeModel) {
+    console.log(`amount is ${amountOrdered}`)
+    if(coffeeModel != null) {
+        let newCoffeePath = "http://localhost:3000/coffees"
+        $.post(
+            newCoffeePath,
+            {
+                name: coffeeModel.name,
+                des: coffeeModel.des,
+                price: coffeeModel.price,
+                imgUrl: coffeeModel.imgURL
+            }, 
+            function(data, status) {
+                console.log(`${JSON.stringify(JSON.stringify(coffeeModel) )} with status ${status}`)
+            }
+        )
+        console.log(coffeeModel)
+    }
+}
 
 function onLoadCart() {
     let endpoint = 'http://localhost:3000/coffees'  
@@ -102,12 +122,6 @@ function onLoadCart() {
     });
 }
 
-
-
-
-
-
-
 function onDeleteCoffeeRow(id) {
     console.log(id)
     let endpoint = `http://localhost:3000/coffees/delete/${id}`
@@ -126,8 +140,6 @@ function onEditCoffeeRow() {
     $('#imgPickBt').click(function() {
     })
 }
-
-
 
 function initFirebase() {
     var firebaseConfig = {
@@ -151,16 +163,20 @@ async function imgPick() {
     var metadata = {
         contentType: 'image/jpeg'
     };
-    $('#file-input').trigger('click');
-    var myFile = $('#file-input').prop('files');
-    var ref = firebase.storage().ref();
-    await ref.child(`latte-shit.jpg`).put(myFile, metadata).then((snapshot) => {
-        console.log('Uploaded a blob or file!');
-    });
-
+    //$('#file-input').trigger('click').click()
+    //var file_data = $('#file-input').prop('files')[0];
+    //var form_data = new FormData();
+    //form_data.append('file', file_data);
+    //let imagesRef = storageRef.child('images')
+    //imagesRef.put(form_data).then((snapshot) => {
+        //console.log('Upload a blob or file')
+    //})
+    
 }
 
+function setUpImagePicker() {
 
+}
 
 function addNewCoffeeItem(coffeeItem) {
     let data = coffeeItem.id
@@ -197,52 +213,53 @@ function addNewCoffeeItem(coffeeItem) {
                             </tr>`);
                                 }
 
+function onUpdateUI() {
+    coffees.forEach(function (item) {
+        addNewCoffeeItem(item);
+    });
+}
 
+function onAdd() {
 
-                                function onUpdateUI() {
-                                    coffees.forEach(function (item) {
-                                        addNewCoffeeItem(item);
-                                    });
-                                }
+    let name = $('#tvproduct').val()
+    let des = $('#tvdes').val()
+    let price = $('#tvprice').val()
+    console.log(`name:${name} des:${des} price:${price}`)
+    imagesRef.getDownloadURL().then((URL) => {
+        let addCoffeePath = "http://localhost:3000/coffees"
+        console.log("Adding")
+       $.post(
+            addCoffeePath,
+            {
+                name: name,
+                des: des, 
+                price: price,
+                imgURL: URL 
+            }, 
+            function(data, status) {
+                window.location.reload()
+            }
+        )
+    })
 
+}
 
-                                function onAdd() {
-                                    console.log(`Product Name is ${tvproduct.val()}`)
-                                    console.log(`password is ${tvdes.val()}`)
-                                    console.log(`password is ${tvprice.val()}`)
-                                    console.log(`password is ${tvimage.val()}`)
+function onLogout() {
+    dialog.close() 
+}
 
-                                    let uproducr = tvproduct.val()
-                                    let udes = tvdes.val()
-                                    let uPrice = tvprice.val()
-                                    let uimg = tvimage.val()
+function onUpdateUIAtPos(position) {
+    let adminItem = admin[position]
+    updateCartUI(adminItem)
+}
 
-                                }
-
-
-
-                                function onLogout() {
-                                    dialog.close() 
-
-
-                                }
-
-                                function onUpdateUIAtPos(position) {
-                                    let adminItem = admin[position]
-                                    updateCartUI(adminItem)
-                                }
-
-
-
-
-
-                                //Models
-                                class Coffee {
-                                    constructor(id, name, description, price, imgURL) {
-                                        this.id = id;
-                                        this.name = name;
-                                        this.description = description;
-                                        this.price = price;
-                                        this.imgURL = imgURL;
-                                    }
-                                };
+//Models
+class Coffee {
+    constructor(id, name, description, price, imgURL) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.imgURL = imgURL;
+    }
+};
