@@ -1,11 +1,11 @@
 const express = require('express')
-const CartItem = require('../model/CartItem')
+const SentedItem = require('../model/SentedItem')
 const router = express.Router()
 
 //CREATE READ UPDATE DELETE
 //get all
 router.get('/',async (req, res) => {
-    let items = await CartItem.find()
+    let items = await SentedItem.find()
     res.json({
         statusCode: 200,
         data: items
@@ -27,7 +27,8 @@ router.post('/', async (req, res) => {
         des: payload.des,
         price: payload.price,
         imgUrl: payload.imgUrl,
-        amount: payload.amount
+        amount: payload.amount,
+        userId: payload.userId
     })
     await cartItem.save()
     res.status(201).send(cartItem)
@@ -43,10 +44,8 @@ router.delete('/delete/:id', async (req, res) => {
             res.send({deleted: id })
         }
     })
+        
 })
-
-
-
 
 //not finish
 router.post('/update?:id', async (req, res) => {

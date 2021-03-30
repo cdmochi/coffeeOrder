@@ -31,4 +31,16 @@ router.post('/', async (req, res) => {
     res.status(201).send(coffee)
 })
 
+//delete item from cart
+router.delete('/delete/:id', async (req, res) => {
+    let id = req.params.id
+    console.log('Deleting Item as ID:' + id)
+    var removeCallback = Coffee.findOneAndDelete({ _id: id}, res.body, function(err, data) {
+        if(!err) {
+            console.log("deleted")
+            res.send({deleted: id })
+        }
+    })
+})
+
 module.exports = router
