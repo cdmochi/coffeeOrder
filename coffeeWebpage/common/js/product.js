@@ -72,7 +72,6 @@ function addCoffeeToCart(coffeeModel, amountOrdered) {
             }, 
             function(data, status) {
                 console.log(`${JSON.stringify(JSON.stringify(coffeeModel) )} with status ${status}`)
-                $('')
             }
         )
 
