@@ -9,4 +9,4 @@ const cartItemSchema = mongoose.Schema({
     userId: String
 })
 
-module.exports = mongoose.model('CartItem', cartItemSchema)
+module.exports = mongoose.model('SentedItem', cartItemSchema)
