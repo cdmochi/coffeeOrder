@@ -16,9 +16,16 @@ $(document).ready(() => {
         appId: "1:74233054384:web:f395be37217b03d4162775",
         measurementId: "G-R7M8ML9S4Q"
     };
+
+    
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
     firebase.analytics();
+
+
+
+
+    
 
     let logd = $('#loginDialog')
     console.log(logd)
@@ -38,6 +45,14 @@ $(document).ready(() => {
         console.log("dialog close")
     });
 })
+
+
+
+
+
+
+
+
 
 function onLogin() {
     console.log(`email is ${emailTv.val()}`)

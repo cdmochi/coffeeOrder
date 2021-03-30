@@ -22,6 +22,7 @@ function onLoadCoffees() {
             let coffeeItem = result.data
             console.log(coffeeItem.length)
             var index;
+            
             for (index = 0; index < coffeeItem.length; index++) {
                 let item = coffeeItem[index]
                 console.log(item.name + ":" + item.name)
