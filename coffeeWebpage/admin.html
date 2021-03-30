@@ -95,53 +95,62 @@
                     <div class="p-5">
 
                         <h2 style="text-align: center" class="font-roboto">Add Product</h2>
-                        
-                        <label class="mdc-text-field mdc-text-field--filled m-3">
+
+                    <form  onsubmit="Addfunction()">
+
+                        <label class="mdc-text-field mdc-text-field--filled m-3" >
                             <span class="mdc-text-field__ripple"></span>
-                            <span class="mdc-floating-label" id="my-label-id">Product Name</span>
-                            <input class="mdc-text-field__input" type="text" aria-labelledby="my-label-id" id="tvproduct">
+                            <span class="mdc-floating-label" id="my-label-id">Product Name </span>
+                            <input class="mdc-text-field__input" type="text" aria-labelledby="my-label-id" required id="tvproduct">
                             <span class="mdc-line-ripple"></span>
                         </label>
+                    
+
                         <br/>
-                        <label class="mdc-text-field mdc-text-field--filled m-3">
+                       
+                        <label class="mdc-text-field mdc-text-field--filled m-3"required >
                             <span class="mdc-text-field__ripple"></span>
                             <span class="mdc-floating-label" id="my-label-id">Description</span>
-                            <input class="mdc-text-field__input" type="text" aria-labelledby="my-label-id" id="tvdes">
+                            <input class="mdc-text-field__input" type="text" aria-labelledby="my-label-id" id="tvdes" >
                             <span class="mdc-line-ripple"></span>
                         </label>
+                    
                         <br/>
-
+                      
                         <label class="mdc-text-field mdc-text-field--filled m-3">
                             <span class="mdc-text-field__ripple"></span>
                             <span class="mdc-floating-label" id="my-label-id">Price</span>
-                            <input class="mdc-text-field__input" type="text" aria-labelledby="my-label-id" id="tvprice">
+                            <input class="mdc-text-field__input" type="text" aria-labelledby="my-label-id" id="tvprice" >
                             <span class="mdc-line-ripple"></span>
                         </label>
+                    
                         <br/>
 
-                        <button class="mdc-button mdc-button--outlined" onclick="imgPick()">
+                        <button class="mdc-button mdc-button--outlined" onclick="imgPick()" >
                             <span class="mdc-button__ripple"></span>
                             <span class="mdc-button__label">SELECT IMAGE</span>
                         </button><br/>
 
-                        <input id="file-input" type="file" name="name" style="display: none;" />
+                        <input id="file-input" type="file" name="name" style="display: none;" required>
+
+                    </form>    
 
                     </div>
 
 
 
                     <div class="mdc-dialog__actions">
-
+                        <form  onsubmit="Addfunction()">
                         <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="cancel">
                             <div class="mdc-button__ripple"></div>
 
                             <span class="mdc-button__label">Cancel</span>
                         </button>
 
-                        <button type="button" class="mdc-button mdc-dialog__button" onclick="addProduct()"> <div class="mdc-button__ripple"></div>
+                        <button type="button" class="mdc-button mdc-dialog__button" onclick="addProduct()"> <div class="mdc-button__ripple"> </div>
                             <span class="mdc-button__label">ADD</span>
                         </button>
-
+                        </form>
 
                     </div>
 

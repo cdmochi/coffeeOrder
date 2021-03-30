@@ -105,6 +105,10 @@ function onUpdateUI() {
     });
 }
 
+
+
+
+
 function addNewCoffeeItem(coffeeItem) {
     let data = coffeeItem.id
     $('#coffeeContainer')

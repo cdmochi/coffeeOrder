@@ -1,5 +1,6 @@
 var admin = []
 var currentUser = null
+
 const dialog = new mdc.dialog.MDCDialog(document.querySelector('.mdc-dialog'));
 const dataTable = new mdc.dataTable.MDCDataTable(document.querySelector('.mdc-data-table'));
 
@@ -34,12 +35,43 @@ $(document).ready(function() {
 
 
 function addProduct() {
-    console.log('dddddddddddddddddddddd')
+    /*console.log('dddddddddddddddddddddd')*/
+    dialog.close() 
+    
+   
 }
 
 
 
 
+
+
+
+
+
+
+
+
+function Addfunction(){
+    console.log(`Product Name is ${tvproduct.val()}`)
+    console.log(`Description is ${tvdes.val()}`)
+    console.log(`Price is ${tvprice.val()}`)
+    console.log(`Image is ${tvimage.val()}`)
+
+    let uproducr = tvproduct.val()
+    let udes = tvdes.val()
+    let uPrice = tvprice.val()
+    let uimg = tvimage.val()
+
+
+}
+
+
+
+
+
+
+  
 
 function onLoadCart() {
     let endpoint = 'http://localhost:3000/coffees'  
@@ -70,6 +102,12 @@ function onLoadCart() {
     });
 }
 
+
+
+
+
+
+
 function onDeleteCoffeeRow(id) {
     console.log(id)
     let endpoint = `http://localhost:3000/coffees/delete/${id}`
@@ -88,6 +126,8 @@ function onEditCoffeeRow() {
     $('#imgPickBt').click(function() {
     })
 }
+
+
 
 function initFirebase() {
     var firebaseConfig = {
@@ -119,6 +159,8 @@ async function imgPick() {
     });
 
 }
+
+
 
 function addNewCoffeeItem(coffeeItem) {
     let data = coffeeItem.id
@@ -189,6 +231,10 @@ function addNewCoffeeItem(coffeeItem) {
                                     let adminItem = admin[position]
                                     updateCartUI(adminItem)
                                 }
+
+
+
+
 
                                 //Models
                                 class Coffee {

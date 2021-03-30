@@ -5,6 +5,8 @@ const dialog = new mdc.dialog.MDCDialog(document.querySelector('.mdc-dialog'));
 const emailTv = $('#tvEmail')
 const passwordTv = $('#tvPassword')
 
+
+
 $(document).ready(function(){
     const textFields = [].map.call(document.querySelectorAll('.mdc-text-field'), function(el) {
         return new mdc.textField.MDCTextField(el);
@@ -12,6 +14,19 @@ $(document).ready(function(){
     initFirebase()
     onLoadCart()
 
+    firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+            // User is signed in, see docs for a list of available properties
+            var uid = user.uid;
+            // ...
+            
+        } else {
+            // User is signed out
+        }
+    });
+
+
+    
 
     $('#btCheckout').click(() => {
         if(currentUser == null) {
@@ -28,6 +43,12 @@ $(document).ready(function(){
         console.log("dialog close")
     });
 })
+
+
+
+
+
+
 
 
 function onLoadCart() {
@@ -104,6 +125,9 @@ function onLogout() {
 
 }
 
+
+
+
 function setOnItemDeleteListener() {
     $(".onButtonClick").click(function() {
         var buttonId = $(this).attr('id')
@@ -118,6 +142,9 @@ function setOnItemDeleteListener() {
 
     })
 }
+
+
+
 
 function onUpdateUIAtPos(position) {
     let cartItem = cart[position]
@@ -160,6 +187,9 @@ function updateCartUI(itemcart) {
             </tr>`
         )
 }
+
+
+
 
 function initFirebase() {
     var firebaseConfig = {
