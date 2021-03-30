@@ -67,51 +67,7 @@
 
 
                         <tbody class="mdc-data-table__content" id = "container-admin">
-                            <tr class="mdc-data-table__row">
-
-                                <th class="mdc-data-table__cell" scope="row">Esspresso</th>
-                                <td class="mdc-data-table__cell" scope="row"> A perfectly brewed coffee with<br> exquisite balance, and aroma.</br> </td>
-                                <th class="mdc-data-table__cell" scope="row">70</th>
-                                <!---td class="mdc-data-table__cell mdc-data-table__cell--numeric">70</td--->
-                                <td class="mdc-data-table__cell"><img src="common/images/Espresso.png" width = "55px" > </td>
-
-                                <td><div class="mdc-dialog__actions">
-                                    <button type="button-delete" class="mdc-button mdc-dialog__button" onclick="Delete()">
-                                        <div class="mdc-button__ripple"></div>
-                                        <span class="mdc-button__label"scope="row">Delete</span>
-
-                                        
-                                    </button>
-                                
-                                </td>
-
-                                <td><div class="mdc-dialog__actions">
-                                    <button type="button-delete" class="mdc-button mdc-dialog__button" onclick="Edit()">
-                                        <div class="mdc-button__ripple"></div>
-                                        <span class="mdc-button__label"scope="row">Edit</span>
-
-                                        
-                                    </button>
-                                
-                                </td>
-                                
-                            </tr>
-
-
-
-
-
-
-
-                            
-
-
-
-                           
-
-
-
-
+                            <!--Item will be added here-->
                         </tbody>
 
 
@@ -133,11 +89,6 @@
                      aria-modal="true"
                      aria-labelledby="my-dialog-title"
                      aria-describedby="my-dialog-content">
-
-
-                    <div class="mdc-dialog__content" id="my-dialog-content">
-                        Discard draft?
-                    </div>
 
 
                     <div class="Add-product">
@@ -168,15 +119,13 @@
                         </label>
                         <br/>
 
-                        <label class="mdc-text-field mdc-text-field--filled m-3">
-                            <span class="mdc-text-field__ripple"></span>
-                            <span class="mdc-floating-label" id="my-label-id">imgage</span>
-                            <input class="mdc-text-field__input" type="text" aria-labelledby="my-label-id" id="tvimage">
-                            <span class="mdc-line-ripple"></span>
-                        </label>
-                        <br/>
+                        <button class="mdc-button mdc-button--outlined" onclick="imgPick()">
+                            <span class="mdc-button__ripple"></span>
+                            <span class="mdc-button__label">SELECT IMAGE</span>
+                        </button><br/>
 
-                       
+                        <input id="file-input" type="file" name="name" style="display: none;" />
+
                     </div>
 
 
@@ -185,21 +134,19 @@
 
                         <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="cancel">
                             <div class="mdc-button__ripple"></div>
-                            
+
                             <span class="mdc-button__label">Cancel</span>
                         </button>
 
-                        <button type="button" class="mdc-button mdc-dialog__button" onclick="addProduct()">
-                            <div class="mdc-button__ripple"></div>
+                        <button type="button" class="mdc-button mdc-dialog__button" onclick="addProduct()"> <div class="mdc-button__ripple"></div>
                             <span class="mdc-button__label">ADD</span>
                         </button>
 
-                        
-                    </div>
-                
-                </div>
 
-                    <i class="material-icons mdc-button__icon" aria-hidden="true">logout</i>
+                    </div>
+
+                    </div>
+
 
                 </div>
             </div>
