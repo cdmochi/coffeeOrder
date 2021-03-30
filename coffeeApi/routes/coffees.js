@@ -9,8 +9,7 @@ router.get('/',async (req,res) => {
     res.json( {
         statusCode: 200,
         data: result 
-    })
-})
+    }) })
 
 router.get('/:id',(req, res) => {
     //get param
@@ -29,6 +28,13 @@ router.post('/', async (req, res) => {
     })
     await coffee.save()
     res.status(201).send(coffee)
+})
+
+router.post('/update/:id', async(req, res) => {
+    var payload = req.body
+    const id = req.params.id
+    await Coffee.findByIdAndUpdate(id, { name: payload.name,des: payload.des, price: payload.price,imgURL: payload.imgURL })
+    res.status(201).send({status: id + " :removed"})
 })
 
 module.exports = router
