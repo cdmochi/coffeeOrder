@@ -1,6 +1,6 @@
 var currentUser = null
 
-const BASE_PATH = "https://coffeeapi123.azurewebsites.net"
+const BASE_PATH = "http://localhost:3000"
 const dialog = new mdc.dialog.MDCDialog(document.querySelector('.mdc-dialog'));
 const emailTv = $('#tvEmail')
 const passwordTv = $('#tvPassword')

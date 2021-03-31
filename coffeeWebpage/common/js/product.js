@@ -1,6 +1,6 @@
 
 var coffees = [];
-const BASE_PATH = "https://coffeeapi123.azurewebsites.net"
+const BASE_PATH = "http://localhost:3000"
 //document ready
 $(document).ready(function () {
     console.log('running');

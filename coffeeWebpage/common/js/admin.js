@@ -8,7 +8,7 @@ initFirebase()
 var storage = firebase.storage();
 var storageRef = storage.ref();
 var imagesRef = storageRef.child('images')
-const BASE_PATH = "https://coffeeapi123.azurewebsites.net"
+const BASE_PATH = "http://localhost:3000"
 
 $(document).ready(function() {
     document.querySelector('input[type="file"]').addEventListener('change', function() {
