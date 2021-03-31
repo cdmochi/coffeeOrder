@@ -1,5 +1,6 @@
-  var currentUser = null
+var currentUser = null
 
+const BASE_PATH = "https://coffeeapi123.azurewebsites.net"
 const dialog = new mdc.dialog.MDCDialog(document.querySelector('.mdc-dialog'));
 const emailTv = $('#tvEmail')
 const passwordTv = $('#tvPassword')
@@ -86,7 +87,7 @@ $(document).ready(function() {
 function addPromotionItemToCart(coffeeModel, amountOrdered) {
     console.log(`amount is ${amountOrdered}`)
     if(coffeeModel != null) {
-        let addToCartEndpoint = "http://localhost:3000/cartItems"
+        let addToCartEndpoint = `${BASE_PATH}/cartItems`
         $.post(
             addToCartEndpoint,
             {

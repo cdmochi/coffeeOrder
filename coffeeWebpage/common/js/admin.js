@@ -8,6 +8,7 @@ initFirebase()
 var storage = firebase.storage();
 var storageRef = storage.ref();
 var imagesRef = storageRef.child('images')
+const BASE_PATH = "https://coffeeapi123.azurewebsites.net"
 
 $(document).ready(function() {
     document.querySelector('input[type="file"]').addEventListener('change', function() {
@@ -76,7 +77,7 @@ function onSubmitNewCoffee(){
 function addNewCoffee(coffeeModel) {
     console.log(`amount is ${amountOrdered}`)
     if(coffeeModel != null) {
-        let newCoffeePath = "http://localhost:3000/coffees"
+        let newCoffeePath = `${BASE_PATH}/coffees`
         $.post(
             newCoffeePath,
             {
@@ -94,7 +95,7 @@ function addNewCoffee(coffeeModel) {
 }
 
 function onLoadCart() {
-    let endpoint = 'http://localhost:3000/coffees'  
+    let endpoint = `${BASE_PATH}/coffees`  
     $.ajax({
         type: 'GET',
         url: endpoint,
@@ -124,7 +125,7 @@ function onLoadCart() {
 
 function onDeleteCoffeeRow(id) {
     console.log(id)
-    let endpoint = `http://localhost:3000/coffees/delete/${id}`
+    let endpoint = `${BASE_PATH}/coffees/delete/${id}`
     $.ajax({
         url: endpoint,
         type: 'DELETE',
@@ -226,7 +227,7 @@ function onAdd() {
     let price = $('#tvprice').val()
     console.log(`name:${name} des:${des} price:${price}`)
     imagesRef.getDownloadURL().then((URL) => {
-        let addCoffeePath = "http://localhost:3000/coffees"
+        let addCoffeePath = `${BASE_PATH}/coffees`
         console.log("Adding")
        $.post(
             addCoffeePath,

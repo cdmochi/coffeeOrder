@@ -5,6 +5,7 @@ var currentUser = null
 const dialog = new mdc.dialog.MDCDialog(document.querySelector('.mdc-dialog'));
 const emailTv = $('#tvEmail')
 const passwordTv = $('#tvPassword')
+const BASE_PATH = "https://coffeeapi123.azurewebsites.net"
 
 
 
@@ -35,7 +36,7 @@ $(document).ready(function(){
 })
 
 function addSentedItem(coffeeModel) {
-    let addToCartEndpoint = "http://localhost:3000/sentedItems"
+    let addToCartEndpoint = `${BASE_PATH}/sentedItems`
     $.post(
         addToCartEndpoint,
         {
@@ -53,7 +54,7 @@ function addSentedItem(coffeeModel) {
 }
 
 function onLoadCart() {
-    let endpoint = 'http://localhost:3000/cartItems'  
+    let endpoint = `${BASE_PATH}/cartItems`  
     $.ajax({
         type: 'GET',
         url: endpoint,
@@ -122,8 +123,8 @@ function onLogin() {
 } 
 function onSubmitTheCartItems() {
     console.log('onSubmitTheCartItem')
-    let sentedItemPath = "http://localhost:3000/sentedItems/list"
-    let deleteAllPath = "http://localhost:3000/sentedItems/clearCartItems"
+    let sentedItemPath = `${BASE_PATH}/sentedItems/list`
+    let deleteAllPath = `${BASE_PATH}/sentedItems/clearCartItems`
 
     var itemSented = []
     for (i = 0; i < cart.length; i++ ) {
@@ -190,7 +191,7 @@ function onLogout() {
 function setOnItemDeleteListener() {
     $(".onButtonClick").click(function () {
         var buttonId = $(this).attr('id')
-        let endpoint = `http://localhost:3000/cartItems/delete/${buttonId}`
+        let endpoint = `${BASE_PATH}/cartItems/delete/${buttonId}`
         $.ajax({
             url: endpoint,
             type: 'DELETE',

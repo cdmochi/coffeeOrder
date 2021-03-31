@@ -1,6 +1,6 @@
 
 var coffees = [];
-
+const BASE_PATH = "https://coffeeapi123.azurewebsites.net"
 //document ready
 $(document).ready(function () {
     console.log('running');
@@ -11,7 +11,7 @@ $(document).ready(function () {
 })
 function onLoadCoffees() {
 
-    let endpoint = 'http://localhost:3000/coffees'
+    let endpoint = `${BASE_PATH}/coffees`
     $.ajax({
         type: 'GET',
         url: endpoint,
@@ -62,7 +62,7 @@ function onLoadCoffees() {
 function addCoffeeToCart(coffeeModel, amountOrdered) {
     console.log(`amount is ${amountOrdered}`)
     if(coffeeModel != null) {
-        let addToCartEndpoint = "http://localhost:3000/cartItems"
+        let addToCartEndpoint = `${BASE_PATH}/cartItems`
         $.post(
             addToCartEndpoint,
             {
