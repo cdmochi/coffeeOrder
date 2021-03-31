@@ -1,3 +1,4 @@
+
 var cart = []
 var currentUser = null
 
@@ -14,25 +15,14 @@ $(document).ready(function(){
     initFirebase()
     onLoadCart()
 
-    firebase.auth().onAuthStateChanged((user) => {
-        if (user) {
-            // User is signed in, see docs for a list of available properties
-            var uid = user.uid;
-            // ...
-            
-        } else {
-            // User is signed out
-        }
-    });
-
-
-    
-
-    $('#btCheckout').click(() => {
+    $('#btCheckout').click(function() {
         if(currentUser == null) {
             dialog.open()
-        } 
+        } else {
+            onSubmitTheCartItems()
+        }
     })
+
 
     //listening for dialog open
     dialog.listen('MDCDialog:opened', () => {
@@ -44,12 +34,23 @@ $(document).ready(function(){
     });
 })
 
-
-
-
-
-
-
+function addSentedItem(coffeeModel) {
+    let addToCartEndpoint = "http://localhost:3000/sentedItems"
+    $.post(
+        addToCartEndpoint,
+        {
+            name: coffeeModel.name,
+            des: coffeeModel.description, 
+            price: coffeeModel.price,
+            imgUrl: coffeeModel.imgSRC,
+            amount: parseInt(amountOrdered),
+            userId: coffeeModel.userId
+        }, 
+        function(data, status) {
+            console.log(`${JSON.stringify(JSON.stringify(coffeeModel) )} with status ${status}`)
+        }
+    )
+}
 
 function onLoadCart() {
     let endpoint = 'http://localhost:3000/cartItems'  
@@ -79,11 +80,8 @@ function onLoadCart() {
                 )
                 onUpdateUIAtPos(index)
             }
-
-
-
-
-
+            console.log("item in cart")
+            console.log(cart)
             updateCartTotals()
             console.log("result:" + JSON.stringify(cart))
             setOnItemDeleteListener()
@@ -103,7 +101,9 @@ function onLogin() {
     let uEmail = emailTv.val()
     let uPass = passwordTv.val()
     if(uEmail && uPass) {
-        firebase.auth().signInWithEmailAndPassword(uEmail, uPass)
+        firebase
+            .auth()
+            .signInWithEmailAndPassword(uEmail, uPass)
             .then((userCredential) => {
                 // Signed in
                 var user = userCredential.user;
@@ -111,31 +111,90 @@ function onLogin() {
                 console.log('USER:login with id ' + user.uid)
                 currentUser = { userId: user.uid }
                 console.log('USER:login with id ' + JSON.stringify(currentUser))
+                onSubmitTheCartItems()
             })
             .catch((error) => {
                 var errorCode = error.code;
                 var errorMessage = error.message;
             });
+        dialog.close()
     }
+} 
+function onSubmitTheCartItems() {
+    console.log('onSubmitTheCartItem')
+    let sentedItemPath = "http://localhost:3000/sentedItems/list"
+    let deleteAllPath = "http://localhost:3000/sentedItems/clearCartItems"
+
+    var itemSented = []
+    for (i = 0; i < cart.length; i++ ) {
+        let coffeeModel = cart[i]
+        console.log("CoffeeModel is ..")
+        console.log(coffeeModel)
+        console.log("id:" + coffeeModel.id)
+        itemSented.push(
+            {
+                id: coffeeModel.id,
+                name: coffeeModel.name,
+                des: coffeeModel.des,
+                price: coffeeModel.price,
+                imgUrl: coffeeModel.imgSrc,
+                amount: coffeeModel.amount,
+                userId: coffeeModel.userId
+            }
+        )
+    }
+    console.log(`list to be sented ${JSON.stringify(itemSented[0])}`)
+    $.ajax({
+        type: 'post',
+        url: sentedItemPath,
+        dataType: "json",
+        data: { listData: itemSented },
+        success: function (data, status) {
+            console.log("Sented Item....")
+            console.log(`${JSON.stringify(JSON.stringify(coffeeModel))} with status ${status}`)
+        }
+
+    })
+    $.ajax({
+        type: 'post',
+        url: deleteAllPath,
+        data: {},
+        xhrFields: {
+            withCredentials: false
+        },
+        headers: {
+
+        },
+        success: function (data) {
+            console.log('Success');
+            console.log(data);
+            location.reload()
+        },
+        error: function (error) {
+            console.log('We are sorry but our servers are having an issue right now');
+            if (error) {
+                console.log(JSON.stringify(error))
+            }
+        }
+    })
+
 }
 
 function onLogout() {
     dialog.close() 
-
-
 }
 
 
 
 
 function setOnItemDeleteListener() {
-    $(".onButtonClick").click(function() {
+    $(".onButtonClick").click(function () {
         var buttonId = $(this).attr('id')
         let endpoint = `http://localhost:3000/cartItems/delete/${buttonId}`
         $.ajax({
             url: endpoint,
             type: 'DELETE',
-            success: function(result) {
+            success: function (result) {
                 console.log("deleted:" + JSON.stringify(result))
             }
         })
@@ -154,10 +213,10 @@ function onUpdateUIAtPos(position) {
 function updateCartTotals() {
     var totalItem = 0
     var totalPrice = 0
-    for(i = 0; i < cart.length; i++) {
+    for (i = 0; i < cart.length; i++) {
         let item = cart[i]
         totalItem++
-        totalPrice+= (item.price * item.amount)
+        totalPrice += (item.price * item.amount)
     }
     $('#tdTotalItem').text(totalItem.toString() + " Item")
     $('#tdTotalPrice').text(totalPrice.toString() + " Bath")
@@ -209,7 +268,7 @@ function initFirebase() {
 
 //Models
 class CheckoutCoffee {
-    constructor(id, name, des,price,imgSrc ,amount,userId) {
+    constructor(id, name, des, price, imgSrc, amount, userId) {
         this.id = id;
         this.name = name;
         this.des = des;

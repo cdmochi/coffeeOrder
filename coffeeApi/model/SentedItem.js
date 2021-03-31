@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const cartItemSchema = mongoose.Schema({
+const sentedItem = mongoose.Schema({
     name: String,
     des: String,
     price: Number,
@@ -9,4 +9,4 @@ const cartItemSchema = mongoose.Schema({
     userId: String
 })
 
-module.exports = mongoose.model('SentedItem', cartItemSchema)
+module.exports = mongoose.model('SentedItem', sentedItem)
